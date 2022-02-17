@@ -9,7 +9,7 @@ const CustomLayout = (props) => {
             <Sider>
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-                    {props.menuItems}
+                    
                 </Menu>
             </Sider>
             <Layout>

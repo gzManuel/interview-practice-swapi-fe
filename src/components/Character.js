@@ -1,13 +1,12 @@
 import React from 'react';
-import { Card } from 'antd'
+import CharacterCard from './CharacterCard';
+import CharacterData from './CharacterData';
 
 const Character = ({ title, character }) => {
     return (
-        <Card title={title} style={{textAlign:"center"}}>
-            <p><span>Name:</span>{character.name}</p>
-            <p><span>Birth day:</span>{character.birth_year}</p>
-            <p><span>Homeworld:</span>{character.homeworld}</p>
-        </Card>
+        <CharacterCard title={title}>
+            <CharacterData name={character.name} birth_year={character.birth_year} homeworld={character.homeworld} />
+        </CharacterCard>
     );
 };
 
