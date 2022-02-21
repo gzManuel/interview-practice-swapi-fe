@@ -24,7 +24,7 @@ const Characters = () => {
 
     return (
         <CharacterLayout buttons={buttons}>
-            <Character title={"Character information"} character={character} />
+            <Character title="Character information" character={character} />
         </CharacterLayout>
     );
 };
