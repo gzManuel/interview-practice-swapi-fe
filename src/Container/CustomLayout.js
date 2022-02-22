@@ -4,6 +4,7 @@ import { Layout, Menu } from 'antd';
 const { Header, Sider, Content, Footer } = Layout;
 
 const CustomLayout = (props) => {
+    
     return (
         <Layout>
             <Sider>

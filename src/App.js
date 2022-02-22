@@ -21,8 +21,8 @@ function App() {
     return showCharacterHandler.bind(null, num)
   }
 
-  const buttons = numberPeople.map((num) => <><Button key={num}
-    onClick={setShowCharacterHandler(num)}> Character {num}</Button><br /></>);
+  const buttons = numberPeople.map((num) => <Button style={{ display: "block" }} key={num}
+    onClick={setShowCharacterHandler(num)}> Character {num}</Button>);
 
   return (
     <CustomLayout>
