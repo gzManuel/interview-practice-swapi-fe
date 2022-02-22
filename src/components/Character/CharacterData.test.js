@@ -1,34 +1,17 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import CharacterData from './CharacterData';
 
-let container = null;
-
 describe("CharacterData component", () => {
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
+    it(`Empty CharacterData if there're not name, birthday or homeworld`, () => {
+        const { container } = render(<CharacterData />);
+        expect(container).toBeEmptyDOMElement();
     });
-
-    afterEach(() => {
-        unmountComponentAtNode(container);
-        container.remove();
-        container = null;
-    });
-
-    it(`Don't render  if there is no name, birthday or homeworld`, () => {
-        render(<CharacterData />, container);
-        expect(container.textContent).toBe("");
-
-        render(<CharacterData name={"Luke Skywalker"} />, container);
-        expect(container.textContent).toBe("Name: Luke Skywalker")
-
-        render(<CharacterData birth_year={"19BBY"} />, container);
-        expect(container.textContent).toBe("Birth day: 19BBY");
-
-        render(<CharacterData homeworld={"tatooine"} />, container);
-        expect(container.textContent).toBe("Homeworld: tatooine");
-    });
+    it(`Render name, birth_year and homeworld`, () => {
+        render(<CharacterData name="Luke Skywalker" birth_year={"19BBY"} homeworld={"tatooine"} />);
+        screen.getByText('Luke Skywalker');
+        screen.getByText('19BBY');
+        screen.getByText("tatooine");
+    })
 });
