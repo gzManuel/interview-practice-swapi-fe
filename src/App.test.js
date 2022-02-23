@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
-import CharacterData from './components/Character/CharacterData';
+import axios from 'axios'
+
+jest.mock('axios');
 
 describe('App component', () => {
     test('Render 10 buttons', () => {
@@ -10,20 +12,18 @@ describe('App component', () => {
         expect(buttons).toHaveLength(10);
     });
 
-    // test(`First render CharacterData empty`, async () => {
-    //     const { container } = render(<App />);
-    //     const buttons = screen.getAllByRole('button');
-
-    // })
-
     test('Click button 1 and render Character component', async () => {
+        const character = { name: "Luke Skywalker", birth_year: "19BBY", homeworld: "tatooine" }
+        const response = { data: character };
+        axios.get.mockResolvedValue(response);
+
         render(<App />);
         const buttons = screen.getAllByRole('button');
 
         userEvent.click(buttons[0]);
 
-        await screen.findByText("Name:");
-        await screen.findByText("Birth day:")
-        await screen.findByText("Homeworld:")
+        await screen.findByText('Luke Skywalker');
+        await screen.findByText("19BBY")
+        await screen.findByText("tatooine")
     })
 });
